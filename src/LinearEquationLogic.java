@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.Math;
 
 public class LinearEquationLogic {
 
@@ -17,7 +18,7 @@ public class LinearEquationLogic {
     }
     public double getY(String coordinate)
     {
-        int y = Integer.parseInt(coordinate.substring(coordinate.indexOf(",") + 2));
+        int y = Integer.parseInt(coordinate.substring(coordinate.indexOf(",") + 2,coordinate.indexOf(")")));
         return y;
     }
 
@@ -32,6 +33,36 @@ public class LinearEquationLogic {
         String coord2 = scan.nextLine();
         double x2 = getX(coord2);
         double y2 = getY(coord2);
+
+        lnEqtn = new LinearEquation(x1,y1,x2,y2);
+
     }
 
+    public double calcSlope(double x1, double y1, double x2, double y2)
+    {
+        double slope = (y2-y1)/(x2-x1);
+
+        return slope;
+    }
+
+    public double calcYIntercept(double slope, double x1, double y1)
+    {
+        double yIntercept = y1 - slope * x1;
+        return yIntercept;
+    }
+
+    public double calcDistance(double x1,double y1, double x2, double y2)
+    {
+        double distance = Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
+        return distance;
+    }
+
+    public String equation(double slope, double yIntercept)
+    {
+        return "y = " + slope + "x" + "+" + yIntercept;
+    }
+    public String lineInfo()
+    {
+        return null;
+    }
 }

@@ -1,14 +1,19 @@
 public class LinearEquation {
 
-    private double x;
-    private double y;
+    private double x1;
+    private double y1;
+    private double x2;
+    private double y2;
 
-
-    public LinearEquation(double xCoord,double yCoord)
+    public LinearEquation(double x1,double y1,double x2, double y2)
     {
-        x= xCoord;
-        y= yCoord;
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
     }
+
+
 
 
 }
