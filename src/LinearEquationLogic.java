@@ -11,58 +11,57 @@ public class LinearEquationLogic {
         scan = new Scanner(System.in);
     }
 
-    public double getX(String coordinate)
-    {
-        int x = Integer.parseInt(coordinate.substring(1,coordinate.indexOf(",")));
-        return x;
+    public void start(){
+        getCoords();
     }
-    public double getY(String coordinate)
+
+    public int getX(String coordinate)
     {
-        int y = Integer.parseInt(coordinate.substring(coordinate.indexOf(",") + 2,coordinate.indexOf(")")));
-        return y;
+        return Integer.parseInt(coordinate.substring(1,coordinate.indexOf(",")));
+    }
+    public int getY(String coordinate)
+    {
+        return Integer.parseInt(coordinate.substring(coordinate.indexOf(",") + 1,coordinate.indexOf(")")));
     }
 
     public void getCoords()
     {
-        System.out.print("Enter in the first coordinates(like this: (x, y)");
-        String coord1 = scan.nextLine();
-        double x1 = getX(coord1);
-        double y1 = getY(coord1);
+        String initiate = "y";
 
-        System.out.print("Enter in the second coordinates(like this: (x, y)");
-        String coord2 = scan.nextLine();
-        double x2 = getX(coord2);
-        double y2 = getY(coord2);
+        while (initiate.equals("y"))
+        {
+            System.out.print("Enter in the first coordinates(like this: (x, y) ");
+            String coord1 = scan.nextLine();
+            int x1 = getX(coord1);
+            int y1 = getY(coord1);
 
-        lnEqtn = new LinearEquation(x1,y1,x2,y2);
+            System.out.print("Enter in the second coordinates(like this: (x, y) ");
+            String coord2 = scan.nextLine();
+            int x2 = getX(coord2);
+            int y2 = getY(coord2);
+
+            lnEqtn = new LinearEquation(x1,y1,x2,y2);
+            System.out.println(lnEqtn.lineInfo());
+
+            System.out.println(" ");
+            System.out.print("Enter in an x value: ");
+            double xValue = scan.nextDouble();
+            scan.nextLine();
+            System.out.println(lnEqtn.coordinateForX(xValue));
+
+            System.out.println(" ");
+            System.out.print("Would you like to enter another pair of coordinates(y/n)? : ");
+            String ask = scan.nextLine();
+            if(ask.equals("y")){
+                initiate = "y";
+            }else{
+                initiate = "n";
+                System.out.println("Goodbye!");
+            }
+        }
 
     }
 
-    public double calcSlope(double x1, double y1, double x2, double y2)
-    {
-        double slope = (y2-y1)/(x2-x1);
 
-        return slope;
-    }
 
-    public double calcYIntercept(double slope, double x1, double y1)
-    {
-        double yIntercept = y1 - slope * x1;
-        return yIntercept;
-    }
-
-    public double calcDistance(double x1,double y1, double x2, double y2)
-    {
-        double distance = Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
-        return distance;
-    }
-
-    public String equation(double slope, double yIntercept)
-    {
-        return "y = " + slope + "x" + "+" + yIntercept;
-    }
-    public String lineInfo()
-    {
-        return null;
-    }
 }
