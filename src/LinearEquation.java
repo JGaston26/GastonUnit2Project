@@ -19,30 +19,48 @@ public class LinearEquation {
     public String getSecondCoord(){
         return "(" + x2 + "," + y2 + ")";
     }
+    public double roundToHundreth(double num)
+    {
+        return Math.round(num * 100) / 100.0;
+
+    }
     public double calcSlope()
     {
+        if(x1 == x2){
+            return 0;
+        }
         double slope = ((double) y2-y1)/(x2-x1);
-        return slope;
+        return roundToHundreth(slope);
+    }
+    public String formatSlope(){
+        double numerator = (y2-y1);
+        double denominator = (x2-x1);
+        return numerator + "/" + denominator;
     }
 
     public double calcYIntercept()
     {
+        if(x1 == x2){
+            return 0;
+        }
         double yIntercept = y1 - calcSlope() * x1;
-        return yIntercept;
+        return roundToHundreth(yIntercept);
     }
 
     public double calcDistance()
     {
         double distance = Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1));
-        return distance;
+        return roundToHundreth(distance);
     }
 
     public String equation()
     {
         if(y1 == y2){
             return "y = " + calcYIntercept();
+        }else if(x1 == x2){
+            return "Undefined. There is no possible equation that can be made as the slope is undefined";
         }
-        return "y = " + calcSlope() + "x" + "+" + calcYIntercept();
+        return "y = " + formatSlope() + "x" + "+" + calcYIntercept();
     }
     public String coordinateForX(double xValue){
         double calcY = calcSlope() * xValue + calcYIntercept();

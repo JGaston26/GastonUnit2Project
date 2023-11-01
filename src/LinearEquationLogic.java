@@ -30,12 +30,12 @@ public class LinearEquationLogic {
 
         while (initiate.equals("y"))
         {
-            System.out.print("Enter in the first coordinates(like this: (x, y) ");
+            System.out.print("Enter in the first coordinates(like this (x, y)): ");
             String coord1 = scan.nextLine();
             int x1 = getX(coord1);
             int y1 = getY(coord1);
 
-            System.out.print("Enter in the second coordinates(like this: (x, y) ");
+            System.out.print("Enter in the second coordinates(like this (x, y)): ");
             String coord2 = scan.nextLine();
             int x2 = getX(coord2);
             int y2 = getY(coord2);
